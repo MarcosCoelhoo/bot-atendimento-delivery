@@ -30,7 +30,6 @@ const organizeProductsArray = (productsArray, chatId) => {
   });
 
   db[chatId].itensOrg = resultArray;
-  console.log(db[chatId].itensOrg);
 };
 
 const execute = async (chatId, message, cttName) => {
