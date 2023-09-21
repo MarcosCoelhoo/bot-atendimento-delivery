@@ -1,6 +1,8 @@
-const checkProductPresence = (idChoice, productsArray) => {
-  if (idChoice) {
-    const isPresence = productsArray.some((item) => item.id == idChoice);
+const checkProductPresence = (numProduct, productsArray) => {
+  if (numProduct) {
+    const isPresence = productsArray.some(
+      (item) => item.num_product == numProduct,
+    );
 
     return isPresence;
   }
