@@ -9,17 +9,17 @@ const createStringProductsRemove = (chatId) => {
 
   db[chatId].itensOrg.forEach(
     (item) =>
-      (stringProductRemove += `*[${item.id}]* - ${item.repeatCount}x ${
-        item.product
+      (stringProductRemove += `*[${item.num_product}]* - ${item.repeatCount}x ${
+        item.name
       } (R$ ${item.totalPrice.toFixed(2)})\n`),
   );
 
   return stringProductRemove;
 };
 
-const removeItemCart = (productsArray, productId, chatId) => {
+const removeItemCart = (productsArray, numProduct, chatId) => {
   const arrayItemDeleted = productsArray.filter(
-    (item) => item.id !== +productId,
+    (item) => item.num_product !== +numProduct,
   );
 
   if (chatId) {
@@ -68,7 +68,7 @@ const execute = async (chatId, message, cttName) => {
 
       const productDelected = await api
         .getProductChoice(message)
-        .then((item) => item.product);
+        .then((item) => item.name);
 
       const stringProductRemove = createStringProductsRemove(chatId);
 

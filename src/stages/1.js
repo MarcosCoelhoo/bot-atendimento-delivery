@@ -9,13 +9,13 @@ const organizeProductsArray = (productsArray, chatId) => {
   const productCounts = {};
 
   productsArray.forEach((item) => {
-    const productName = item.product;
+    const productName = item.name;
     if (productCounts[productName]) {
       productCounts[productName].repeatCount++;
     } else {
       productCounts[productName] = {
-        id: item.id,
-        product: capitalizeFirstLetter(productName),
+        num_product: item.num_product,
+        name: capitalizeFirstLetter(productName),
         totalPrice: 0,
         repeatCount: 1,
         priceItem: item.price,
@@ -77,8 +77,8 @@ const execute = async (chatId, message, cttName) => {
     const productChoice = await api.getProductChoice(message);
     if (productChoice) {
       const productCart = {
-        id: productChoice.id,
-        product: productChoice.product,
+        num_product: productChoice.num_product,
+        name: productChoice.name,
         price: productChoice.price,
       };
       db[chatId].itensUnorg.push(productCart);
@@ -94,7 +94,7 @@ const execute = async (chatId, message, cttName) => {
       db[chatId].payment.total = totalPrice;
 
       return `Você adicionou o produto *${capitalizeFirstLetter(
-        productChoice.product,
+        productChoice.name,
       )}* ao carrinho. *Digite o código de outro produto para adicionar mais um*
 
 =================
@@ -116,8 +116,8 @@ const execute = async (chatId, message, cttName) => {
   let menuStr = '';
   menu.forEach(
     (item) =>
-      (menuStr += `*[${item.id}]* - ${capitalizeFirstLetter(
-        item.product,
+      (menuStr += `*[${item.num_product}]* - ${capitalizeFirstLetter(
+        item.name,
       )} - R$ ${item.price.toFixed(2)}\n`),
   );
 

@@ -10,9 +10,11 @@ const getAllProducts = async () => {
   }
 };
 
-const getProductChoice = async (id) => {
+const getProductChoice = async (numProduct) => {
   try {
-    const { data } = await axios.get(`${process.env.API_URL}/${id}`);
+    const { data } = await axios.get(
+      `${process.env.API_URL}?num_product=${numProduct}`,
+    );
     return data[0];
   } catch (err) {
     console.log(err);

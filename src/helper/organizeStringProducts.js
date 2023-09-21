@@ -4,9 +4,7 @@ const organizeStringProducts = (chatId) => {
   const productsCartString = db[chatId].itensOrg
     .map(
       (item) =>
-        `${item.repeatCount}x ${item.product} (R$ ${item.totalPrice.toFixed(
-          2,
-        )})`,
+        `${item.repeatCount}x ${item.name} (R$ ${item.totalPrice.toFixed(2)})`,
     )
     .join(', ');
 
