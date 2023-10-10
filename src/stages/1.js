@@ -34,7 +34,13 @@ const organizeProductsArray = (productsArray, chatId) => {
 
 const execute = async (chatId, message, cttName) => {
   if (message) {
+    const cartLength = db[chatId].itensUnorg.length;
+
     if (message === '1') {
+      if (!cartLength) {
+        return `❌ O código digitado não existe! *Digite um código válido.*`;
+      }
+
       const hasAddress = db[chatId].address.length ? true : false;
 
       switch (hasAddress) {
@@ -68,6 +74,10 @@ const execute = async (chatId, message, cttName) => {
     }
 
     if (message === '3') {
+      if (!cartLength) {
+        return `❌ O código digitado não existe! *Digite um código válido.*`;
+      }
+
       db[chatId].stage = 1.1;
       const resMsg = await getMessageStage(chatId, null, cttName);
 
@@ -102,7 +112,7 @@ const execute = async (chatId, message, cttName) => {
 
       db[chatId].payment.total = totalPrice;
 
-      return `Você adicionou o produto *${capitalizeFirstLetter(
+      return `Você adicionou *${capitalizeFirstLetter(
         productChoice.name,
       )}* ao carrinho. *Digite o código de outro produto para adicionar mais um*
 
@@ -134,9 +144,9 @@ const execute = async (chatId, message, cttName) => {
   return `🍽 *Cardápio*
   
 ${menuStr}
-
 *Digite:*
 ℹ o código do produto para *ADICIONAR NO CARRINHO*
+2️⃣ para *CANCELAR* o pedido
 4️⃣ para *VOLTAR* para a mensagem inicial`;
 };
 
