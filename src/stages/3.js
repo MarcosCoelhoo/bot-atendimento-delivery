@@ -4,23 +4,34 @@ const { getMessageStage } = require('../helper/getMessageStage');
 
 const execute = async (chatId, message, cttName) => {
   if (message) {
-    if (message.length < 3) {
-      return '*❌ Endereço inválido! Digite um endereço válido*';
+    if (message === '1') {
+      db[chatId].stage = 2;
+      const respMsg = await getMessageStage(chatId, null, cttName);
+
+      return respMsg;
     }
 
-    db[chatId].address = message;
-    db[chatId].stage = 4;
+    if (message.length > 3) {
+      db[chatId].address = message;
+      db[chatId].stage = 4;
 
-    const resMsg = await getMessageStage(chatId, null, cttName);
+      const resMsg = await getMessageStage(chatId, null, cttName);
 
-    return resMsg;
+      return resMsg;
+    }
+
+    return `*❌ Endereço inválido! Digite um endereço válido*
+    
+_Ex.: Marapira, Airton Sena, 190_`;
   }
 
   return `*Certo, ${capitalizeFirstLetter(
     cttName,
   )}. Agora nos diga seu endereço.*
 
-_Ex.: Marapira, Airton Sena, 190_`;
+_Ex.: Marapira, Airton Sena, 190_
+
+1️⃣ para *VOLTAR* para *FORMA DE PAGAMENTO*`;
 };
 
 exports.execute = execute;

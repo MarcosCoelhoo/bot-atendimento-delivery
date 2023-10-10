@@ -2,6 +2,7 @@ const { db } = require('../../db');
 const { organizeStringProducts } = require('../helper/organizeStringProducts');
 const { capitalizeFirstLetter } = require('../helper/capitalizeFirstLetter');
 const { cancelOrder } = require('../helper/cancelOrder');
+const { getMessageStage } = require('../helper/getMessageStage');
 
 const execute = async (chatId, message, cttName) => {
   const { itensOrg, address } = db[chatId];
@@ -54,6 +55,14 @@ ${tip ? '*Troco:* ' + tip : ''}`,
       return cancelMsg;
     }
 
+    if (message === '3') {
+      db[chatId].stage = 3;
+
+      const resMsg = await getMessageStage(chatId, null, cttName);
+
+      return resMsg;
+    }
+
     return `❌ O código digitado não existe! *Digite um código válido.*`;
   }
 
@@ -69,7 +78,8 @@ ${method === 'Pix' ? '*Chave Pix:* 91985426763 (Marcos Vinicius C. Maia)' : ''}
 
 *Digite:*
 1️⃣ para *CONFIRMAR* os produtos
-2️⃣ para *CANCELAR* o pedido`;
+2️⃣ para *CANCELAR* o pedido
+3️⃣ para *VOLTAR* para o *ENDEREÇO*`;
 };
 
 exports.execute = execute;

@@ -74,7 +74,16 @@ const execute = async (chatId, message, cttName) => {
       return resMsg;
     }
 
+    if (message === '4') {
+      db[chatId].stage = 0;
+
+      const resMsg = await getMessageStage(chatId, null, cttName);
+
+      return resMsg;
+    }
+
     const productChoice = await api.getProductChoice(message);
+
     if (productChoice) {
       const productCart = {
         num_product: productChoice.num_product,
@@ -105,7 +114,8 @@ const execute = async (chatId, message, cttName) => {
 *Digite:*
 1️⃣ para *CONFIRMAR* os produtos
 2️⃣ para *CANCELAR* o pedido
-3️⃣ para *REMOVER* um produto`;
+3️⃣ para *REMOVER* um produto
+4️⃣ para *VOLTAR* para a mensagem inicial`;
     }
 
     return `❌ O código digitado não existe! *Digite um código válido.*`;
@@ -124,7 +134,10 @@ const execute = async (chatId, message, cttName) => {
   return `🍽 *Cardápio*
   
 ${menuStr}
-*ℹ Digite o código do produto para adicionar no carrinho*`;
+
+*Digite:*
+ℹ o código do produto para *ADICIONAR NO CARRINHO*
+4️⃣ para *VOLTAR* para a mensagem inicial`;
 };
 
 exports.execute = execute;
