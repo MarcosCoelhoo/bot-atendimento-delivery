@@ -58,9 +58,9 @@ const execute = async (chatId, message, cttName) => {
   )}. Eu sou o *Lud*, o robô assistente que irá atender você!
 
 *Digite:*
-1️⃣ *Cardápio*
-2️⃣ *Perguntas frequentes*
-3️⃣ *Falar com uma atendente*`;
+1️⃣ para ver o *CARDÁPIO*
+2️⃣ para ver as *PERGUNTAS FREQUENTES*
+3️⃣ para *FALAR COM UMA ATENDENTE*`;
 };
 
 exports.execute = execute;

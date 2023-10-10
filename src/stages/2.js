@@ -20,6 +20,13 @@ const execute = async (chatId, message, cttName) => {
       return '*Necessita de troco? Caso sim, mande o valor do troco*';
     }
 
+    if (message === '3') {
+      db[chatId].stage = 1;
+      const respMsg = await getMessageStage(chatId, null, cttName);
+
+      return respMsg;
+    }
+
     if (db[chatId].payment.method === 'Espécie') {
       db[chatId].stage = 3;
       db[chatId].payment.tip = message;
@@ -37,7 +44,8 @@ const execute = async (chatId, message, cttName) => {
   )}, qual será a forma de pagamento?*
   
 1️⃣ para pagar no *PIX*
-2️⃣ para pagar em *ESPÉCIE*`;
+2️⃣ para pagar em *ESPÉCIE*
+3️⃣ para *VOLTAR* para o *CARDÁPIO*`;
 };
 
 exports.execute = execute;
