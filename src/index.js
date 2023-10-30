@@ -32,7 +32,7 @@ const startBot = (client) => {
       );
 
       console.log('Client: ', `${message.sender.pushname} (${message.from})`);
-      console.log(message.body);
+      console.log('Message: ', message.body);
       client.sendText(message.chatId, resMsg);
     }
   });

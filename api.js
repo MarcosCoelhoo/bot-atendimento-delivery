@@ -1,9 +1,10 @@
-require('dotenv').config();
 const { default: axios } = require('axios');
+
+const API_URL = 'https://delivery-whats.onrender.com/foods'
 
 const getAllProducts = async () => {
   try {
-    const { data } = await axios.get(process.env.API_URL);
+    const { data } = await axios.get(API_URL);
     return data;
   } catch (err) {
     console.log(err);
@@ -13,7 +14,7 @@ const getAllProducts = async () => {
 const getProductChoice = async (numProduct) => {
   try {
     const { data } = await axios.get(
-      `${process.env.API_URL}?num_product=${numProduct}`,
+      `${API_URL}?num_product=${numProduct}`,
     );
     return data[0];
   } catch (err) {
