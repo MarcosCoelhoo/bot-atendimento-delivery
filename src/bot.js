@@ -5,8 +5,9 @@ const { startBot } = require('./index');
 
 wppconnect
   .create({
-    session: 'Lud Bot',
+    session: 'Lud Atendente',
     logQR: true,
+    headless: true,
     catchQR: (base64Qr) => {
       var matches = base64Qr.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
         response = {};

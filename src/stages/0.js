@@ -53,9 +53,8 @@ const execute = async (chatId, message, cttName) => {
     );
   }
 
-  return `Olá, ${capitalizeFirstLetter(
-    cttName,
-  )}. Eu sou o *Lud*, o robô assistente que irá atender você!
+  const nameCapitalized = capitalizeFirstLetter(cttName);
+  return `Olá, *${nameCapitalized}*. Eu sou o *Lud*, o robô assistente que irá atender você!
 
 *Digite:*
 1️⃣ para ver o *CARDÁPIO*

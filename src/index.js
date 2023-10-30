@@ -31,7 +31,7 @@ const startBot = (client) => {
         message.sender.pushname,
       );
 
-      // console.log('Database: ', db);
+      console.log('Client: ', `${message.sender.pushname} (${message.from})`);
       console.log(message.body);
       client.sendText(message.chatId, resMsg);
     }

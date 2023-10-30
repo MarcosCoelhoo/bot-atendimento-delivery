@@ -39,9 +39,7 @@ const execute = async (chatId, message, cttName) => {
     return `❌ O código digitado não existe! *Digite um código válido.*`;
   }
 
-  return `*Certo ${capitalizeFirstLetter(
-    cttName,
-  )}, qual será a forma de pagamento?*
+  return `${capitalizeFirstLetter(cttName)}, *qual será a forma de pagamento?*
   
 1️⃣ para pagar no *PIX*
 2️⃣ para pagar em *ESPÉCIE*
