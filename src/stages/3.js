@@ -25,12 +25,13 @@ const execute = async (chatId, message, cttName) => {
 _Ex.: Marapira, Airton Sena, 190_`;
   }
 
-  return `*Certo, ${capitalizeFirstLetter(
+  return `Certo, ${capitalizeFirstLetter(
     cttName,
-  )}. Agora nos diga seu endereço.*
+  )}. *Agora nos diga seu endereço.*
 
 _Ex.: Marapira, Airton Sena, 190_
 
+*Digite:*
 1️⃣ para *VOLTAR* para *FORMA DE PAGAMENTO*`;
 };
 

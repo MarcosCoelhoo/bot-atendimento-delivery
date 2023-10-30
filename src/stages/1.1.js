@@ -71,14 +71,19 @@ const execute = async (chatId, message, cttName) => {
         .then((item) => item.name);
 
       const stringProductRemove = createStringProductsRemove(chatId);
+      const totalPrice = db[chatId].itensOrg
+        .reduce((acc, item) => acc + item.totalPrice, 0)
+        .toFixed(2);
 
       return `*${capitalizeFirstLetter(
         productDelected,
       )}* foi removido do carrinho! *Digite outro código pra remover mais um*
       
 ${stringProductRemove}
+*Total:* R$ ${totalPrice}
+
 *Digite:*
-1️⃣ para ir para o *CARDÁPIO*
+1️⃣ para *ADICIONAR* mais produtos
 2️⃣ para *CONTINUAR* seu pedido`;
     }
 
@@ -87,10 +92,16 @@ ${stringProductRemove}
 
   const stringProductRemove = createStringProductsRemove(chatId);
 
+  const totalPrice = db[chatId].itensOrg
+    .reduce((acc, item) => acc + item.totalPrice, 0)
+    .toFixed(2);
+
   return `*❌ Digite o código do produto que você deseja remover*
 
 *Carrinho:*
 ${stringProductRemove}
+*Total:* R$ ${totalPrice}
+
 *Digite:*
 1️⃣ para ir para o *CARDÁPIO*
 2️⃣ para *CONTINUAR* seu pedido`;
